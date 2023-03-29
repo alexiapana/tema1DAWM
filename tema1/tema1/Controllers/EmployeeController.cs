@@ -14,13 +14,13 @@ namespace tema1.Controllers
             , new Employee{ Id=2, FirstName="Andrei", LastName="Ionescu", Department="Resurse umane"}
         };
 
-        [HttpGet]
-        public IActionResult GetAllEmployees()
+        [HttpGet("/get-all")]
+        public ActionResult GetAllEmployees()
         {
             return Ok(employees);
         }
-        [HttpGet ("{id}")]
-        public IActionResult GetEmployee(int id)
+        [HttpGet ("get/{id}")]
+        public ActionResult GetEmployee(int id)
         {
             var employee = employees.Find(x =>x.Id == id);
             if(employee == null)
@@ -30,15 +30,15 @@ namespace tema1.Controllers
             return Ok(employee);
         }
 
-        [HttpPost]
-        public IActionResult AddEmployee(Employee employee)
+        [HttpPost("add")]
+        public ActionResult AddEmployee(Employee employee)
         {
             employees.Add(employee);
             return Ok(employee);
         }
 
-        [HttpPut]
-        public IActionResult UpdateEmployeeData(Employee employee)
+        [HttpPut ("edit-employee")]
+        public ActionResult UpdateEmployeeData(Employee employee)
         {
             var employeeInList = employees.Find(x => x.Id == employee.Id);
             if(employee == null) {
@@ -50,8 +50,8 @@ namespace tema1.Controllers
             return Ok(employeeInList);
         }
 
-        [HttpDelete]
-        public IActionResult DeleteEmployee(int id)
+        [HttpDelete ("delete-employee")]
+        public ActionResult DeleteEmployee(int id)
         {
             var employee = employees.Find(x => x.Id == id);
             if (employee == null)
