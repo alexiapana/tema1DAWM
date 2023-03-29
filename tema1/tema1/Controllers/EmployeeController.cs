@@ -53,7 +53,7 @@ namespace tema1.Controllers
         [HttpDelete]
         public IActionResult DeleteEmployee(int id)
         {
-            var employee = employees.Find(x => x.Id == x.Id);
+            var employee = employees.Find(x => x.Id == id);
             if (employee == null)
             {
                 return NotFound("invalid Id!");
